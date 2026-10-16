@@ -1,0 +1,172 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Para Bianca ❤️</title>
+  <style>
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: radial-gradient(circle, #420d29, #10000c);
+      color: white;
+      font-family: Georgia, serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    .conteudo {
+      padding: 25px;
+      position: relative;
+      z-index: 2;
+    }
+
+    h1 {
+      color: #ff82ae;
+      font-size: 36px;
+    }
+
+    .coracao {
+      font-size: 100px;
+      animation: pulsar 1.5s infinite;
+    }
+
+    @keyframes pulsar {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.2); }
+    }
+
+    button {
+      background: #ff347c;
+      color: white;
+      border: none;
+      border-radius: 30px;
+      padding: 15px 25px;
+      font-size: 17px;
+      cursor: pointer;
+    }
+
+    #mensagem {
+      display: none;
+      max-width: 450px;
+      font-size: 20px;
+      line-height: 1.7;
+      margin-top: 25px;
+    }
+  </style>
+</head>
+<body>
+  <div class="conteudo">
+    <div class="coracao">❤️</div>
+    <h1>Para você, Bianca ❤️</h1>
+    <p>Preparei uma pequena surpresa para você...</p>
+
+    <button onclick="mostrarMensagem()">
+      Clique aqui, meu amor 💌
+    </button>
+
+    <div id="mensagem"></div>
+  </div>
+
+  <script>
+    function mostrarMensagem() {
+     const musica = new Audio("musica.mp3");
+musica.volume = 0.35;
+musica.loop = true;
+musica.play().catch(() => {
+    console.log("Não foi possível tocar a música.");
+}); const texto = "Bianca, nossa história sempre terá um lugar especial no meu coração. Sei que cometemos erros e que nem tudo foi fácil, mas o amor que sinto por você continua sendo verdadeiro. Não quero te prometer perfeição, quero demonstrar mudanças através das minhas atitudes. ❤️";
+
+      const mensagem = document.getElementById("mensagem");
+      const botao = document.querySelector("button");
+
+      botao.style.display = "none";
+      mensagem.style.display = "block";
+
+      
+let i = 0;
+
+function escrever() {
+  if (i < texto.length) {
+    mensagem.textContent += texto.charAt(i);
+    i++;
+    setTimeout(escrever, 45);
+  } else {
+    const final = document.createElement("p");
+
+    final.textContent =
+      "❤️ Bianca, você sempre terá um lugar especial no meu coração. ❤️";
+
+    final.style.color = "#ff82ae";
+    final.style.fontWeight = "bold";
+    final.style.marginTop = "30px";
+    final.style.opacity = "0";
+    final.style.transition = "opacity 2s";
+
+    mensagem.appendChild(final);
+
+    setTimeout(() => {
+      final.style.opacity = "1";
+    }, 100);
+  }
+}
+
+escrever();
+
+    }
+  </script>
+</body>
+</html>
+
+<style>
+  .coracao-flutuante {
+    position: fixed;
+    bottom: -50px;
+    pointer-events: none;
+    z-index: 1;
+    animation: subir linear forwards;
+  }
+
+  @keyframes subir {
+    0% {
+      transform: translateY(0) rotate(0deg);
+      opacity: 0;
+    }
+    15% {
+      opacity: 0.8;
+    }
+    85% {
+      opacity: 0.8;
+    }
+    100% {
+      transform: translateY(-110vh) rotate(25deg);
+      opacity: 0;
+    }
+  }
+</style>
+
+<script>
+  function criarCoracao() {
+    const coracao = document.createElement("div");
+    coracao.className = "coracao-flutuante";
+    coracao.innerHTML = ["❤️", "💕", "💗", "💖"][Math.floor(Math.random() * 4)];
+
+    coracao.style.left = Math.random() * 100 + "vw";
+    coracao.style.fontSize = (15 + Math.random() * 25) + "px";
+    coracao.style.animationDuration = (5 + Math.random() * 5) + "s";
+
+    document.body.appendChild(coracao);
+
+    coracao.addEventListener("animationend", () => {
+      coracao.remove();
+    });
+  }
+
+  setInterval(criarCoracao, 400);
+</script>
